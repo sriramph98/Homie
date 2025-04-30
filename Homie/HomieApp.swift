@@ -9,9 +9,16 @@ import SwiftUI
 
 @main
 struct HomieApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @State private var isAuthenticated = false
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if isAuthenticated {
+                MainTabView()
+            } else {
+                AuthenticationView(isAuthenticated: $isAuthenticated)
+            }
         }
     }
 }
